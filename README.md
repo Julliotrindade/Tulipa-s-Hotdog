@@ -7,12 +7,12 @@ export default function App() {
   const [endereco, setEndereco] = useState("");
 
   const [produtos, setProdutos] = useState([
-    { nome: "Hot Dog Americano", preco: 12, qtd: 0, img: "https://via.placeholder.com/80" },
-    { nome: "Hot Dog Tradicional", preco: 10, qtd: 0, img: "https://via.placeholder.com/80" },
-    { nome: "Hot Dog Carne de Sol na Nata", preco: 18, qtd: 0, img: "https://via.placeholder.com/80" },
-    { nome: "Hot Dog Franbacon", preco: 16, qtd: 0, img: "https://via.placeholder.com/80" },
-    { nome: "Refrigerante", preco: 6, qtd: 0, img: "https://via.placeholder.com/80" },
-    { nome: "Molho Extra", preco: 2, qtd: 0, img: "https://via.placeholder.com/80" }
+    { nome: "Hot Dog Americano", preco: 10, qtd: 0, img: "https://via.placeholder.com/80" },
+    { nome: "Hot Dog Tradicional", preco: 7, qtd: 0, img: "https://via.placeholder.com/80" },
+    { nome: "Hot Dog Carne de Sol na Nata", preco: 8, qtd: 0, img: "https://via.placeholder.com/80" },
+    { nome: "Hot Dog Franbacon", preco: 10, qtd: 0, img: "https://via.placeholder.com/80" },
+    { nome: "Refrigerante", preco: 10, qtd: 0, img: "https://via.placeholder.com/80" },
+    { nome: "Molho Extra", preco: 1, qtd: 0, img: "https://via.placeholder.com/80" }
   ]);
 
   const alterarQtd = (index, valor) => {
