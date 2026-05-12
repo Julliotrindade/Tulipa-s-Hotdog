@@ -4,7 +4,8 @@ export default function App() {
   const telefone = "558496564129";
   const [cliente, setCliente] = useState("");
   const [endereco, setEndereco] = useState("");
-
+  const [pagamento, setPagamento] = useState("");
+  const [observacao, setObservacao] = useState("");
   const [produtos, setProdutos] = useState([
     { nome: "Hot Dog Americano", preco: 12, qtd: 0, img: "https://via.placeholder.com/80" },
     { nome: "Hot Dog Tradicional", preco: 10, qtd: 0, img: "https://via.placeholder.com/80" },
@@ -20,10 +21,18 @@ export default function App() {
     setProdutos(novos);
   };
 
+  const limparPedido = () => {
+    const reset = produtos.map(p => ({ ...p, qtd: 0 }));
+    setProdutos(reset);
+  };
+
+
   const total = produtos.reduce((acc, p) => acc + p.qtd * p.preco, 0);
 
   const enviarPedido = () => {
     let mensagem = "🌭 *Pedido - Tulipa's HotDog* %0A";
+
+
     produtos.forEach(p => {
       if (p.qtd > 0) {
         mensagem += `${p.nome}: ${p.qtd}%0A`;
@@ -34,16 +43,25 @@ export default function App() {
     mensagem += `%0ANome: ${cliente}%0A`;
     mensagem += `Endereço: ${endereco}%0A`;
 
+    if (pagamento) {
+      mensagem += `Forma de pagamento: ${pagamento}%0A`;
+    }
+
+
+    if (observacao) {
+      mensagem += `Observação: ${observacao}%0A`;
+    }
+
+
     const url = `https://wa.me/${telefone}?text=${mensagem}`;
     window.open(url, "_blank");
   };
 
   return (
-    <div style={{ fontFamily: "Arial", background: "#f7f7f7", minHeight: "100vh", paddingBottom: "80px" }}>
+    <div style={{ fontFamily: "Arial", background: "#f7f7f7", minHeight: "100vh", paddingBottom: "100px" }}>
       <div style={{ background: "#ea1d2c", color: "white", padding: "15px", textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>
         Tulipa's HotDog 🌭
       </div>
-
 
       <div style={{ padding: "10px" }}>
         {produtos.map((p, i) => (
@@ -74,6 +92,22 @@ export default function App() {
           placeholder="Endereço"
           value={endereco}
           onChange={(e) => setEndereco(e.target.value)}
+          style={{ width: "100%", marginBottom: "8px", padding: "8px" }}
+        />
+
+
+        <input
+          placeholder="Forma de pagamento (Pix, dinheiro, cartão...)"
+          value={pagamento}
+          onChange={(e) => setPagamento(e.target.value)}
+          style={{ width: "100%", marginBottom: "8px", padding: "8px" }}
+        />
+
+
+        <textarea
+          placeholder="Observações (sem molho, tirar algo, etc...)"
+          value={observacao}
+          onChange={(e) => setObservacao(e.target.value)}
           style={{ width: "100%", padding: "8px" }}
         />
       </div>
@@ -83,12 +117,24 @@ export default function App() {
           <strong>Total:</strong>
           <strong>R$ {total}</strong>
         </div>
-        <button
-          onClick={enviarPedido}
-          style={{ width: "100%", background: "#ea1d2c", color: "white", padding: "12px", borderRadius: "10px", fontSize: "16px", border: "none" }}
-        >
-          Enviar pedido no WhatsApp
-        </button>
+
+
+        <div style={{ display: "flex", gap: "8px" }}>
+          <button
+            onClick={limparPedido}
+            style={{ flex: 1, background: "#999", color: "white", padding: "12px", borderRadius: "10px", border: "none" }}
+          >
+            Limpar
+          </button>
+
+
+          <button
+            onClick={enviarPedido}
+            style={{ flex: 2, background: "#ea1d2c", color: "white", padding: "12px", borderRadius: "10px", fontSize: "16px", border: "none" }}
+          >
+            Enviar no WhatsApp
+          </button>
+        </div>
       </div>
     </div>
   );
