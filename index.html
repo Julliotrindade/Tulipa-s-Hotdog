@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tulipa's HotDog</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f7f7f7;
+  margin: 0;
+}
+
+.topo {
+  background: #ea1d2c;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.produto {
+  background: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  padding: 5px 10px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  padding: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topo">Tulipa's HotDog 🌭</div>
+
+<div class="produto">
+  Americano R$12
+  <input type="number" id="p1" value="0">
+</div>
+
+<div class="produto">
+  Tradicional R$10
+  <input type="number" id="p2" value="0">
+</div>
+
+<div class="produto">
+  Carne de Sol na Nata R$18
+  <input type="number" id="p3" value="0">
+</div>
+
+<div class="produto">
+  Franbacon R$16
+  <input type="number" id="p4" value="0">
+</div>
+
+<div class="produto">
+  Refrigerante R$6
+  <input type="number" id="p5" value="0">
+</div>
+
+<div class="produto">
+  Molho R$2
+  <input type="number" id="p6" value="0">
+</div>
+
+<div class="footer">
+  <button onclick="enviar()">Finalizar Pedido</button>
+</div>
+
+<script>
+function enviar() {
+  let msg = "🌭 Pedido Tulipa's HotDog:%0A";
+
+  if(p1.value > 0) msg += "Americano: " + p1.value + "%0A";
+  if(p2.value > 0) msg += "Tradicional: " + p2.value + "%0A";
+  if(p3.value > 0) msg += "Carne de Sol: " + p3.value + "%0A";
+  if(p4.value > 0) msg += "Franbacon: " + p4.value + "%0A";
+  if(p5.value > 0) msg += "Refrigerante: " + p5.value + "%0A";
+  if(p6.value > 0) msg += "Molho: " + p6.value + "%0A";
+
+  let url = "https://wa.me/558496564129?text=" + msg;
+
+  window.open(url);
+}
+</script>
+
+</body>
+</html>
