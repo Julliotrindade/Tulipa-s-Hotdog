@@ -13,7 +13,7 @@ export default function App() {
   const [produtos, setProdutos] = useState([
     {
       nome: "Hot Dog Americano",
-      preco: 12,
+      preco: 10,
       qtd: 0,
       img: "https://via.placeholder.com/80",
       adicionais: [
